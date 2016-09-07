@@ -1,0 +1,43 @@
+{% if 'edna.add_sensor_type' in perms %}
+<div id="SetSensorType" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Set sensor type</h4>
+      </div>
+      <div class="modal-body"> 
+          <table>
+          {{ stform.as_table }}
+          </table> 
+      </div>
+      <div class="modal-footer">
+        <input type = "submit" class="btn btn-primary" formaction = "/upload/sensortype" value = "OK">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if 'edna.delete_sensortype' in perms %}
+<div id="DeleteSensorType" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete sensor type</h4>
+      </div>
+      <div class="modal-body"> 
+        Do you really want to delete selected sensor types?
+      </div>
+      <div class="modal-footer">
+        <input type = "submit" class="btn btn-danger" formaction = "/delete/sensortype" value = "OK">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+

@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-body">
+
+<form class="form-inline" role="form" enctype="multipart/form-data" method = "post">
+{% csrf_token %}
+<p>
+
+{% if 'edna.add_sensortype' in perms %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SetSensorType">Upload</button>
+{% endif %}
+
+{% if 'edna.delete_sensortype' in perms %}
+<button type = "button" class="btn btn-danger" data-toggle = "modal" data-target = "#DeleteSensorType">Delete</button>
+{% endif %}
+
+{% include "modal_sensortype.html" %}
+
+{% include "list_sensortype.html" %}
+
+</form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% if quantitieslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %} 
+       <th>Abbreviation</th>
+        <th>Full name</th>  
+      </tr>
+    </thead>
+    <tbody>
+      {% for quantity in quantitieslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="quan_id" value="{{ quantity.pk }}" /> </td> {% endif %}
+          <td><a href="/detailview/quantity/{{ quantity.pk }}"> {{quantity.abbreviation}} </a> </td>
+          <td><a href="/detailview/quantity/{{ quantity.pk }}"> {{quantity.name}} </a> </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if not quantitieslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No quantities selected!
+</div>
+
+{% endif %}
+
+

@@ -1,0 +1,39 @@
+{% if expeditionslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %}
+        <th>#</th>
+        <th>Name</th>
+        <th>Started (UTC)</th>
+        <th>Finished (UTC)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for expedition in expeditionslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="exped_id" value="{{ expedition.pk }}" /> </td> {% endif %}
+          <td><a href="/detailview/expedition/{{ expedition.pk }}">{{expedition.pk}}</a></td>
+          <td><a href="/detailview/expedition/{{ expedition.pk }}">{{expedition.name}}</a></td>
+          {% if expedition.start < expedition.finish or 1 %}
+          <td>{{expedition.start|date:"Y-m-d H:i"}}</td>
+          <td>{{expedition.finish|date:"Y-m-d H:i"}}</td>
+          {% else %}
+          <td>-</td>
+          <td>-</td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if not expeditionslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No expeditions selected!
+</div>
+
+{% endif %}

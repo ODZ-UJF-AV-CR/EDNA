@@ -1,0 +1,70 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EDNA</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "favicon.ico" %}" >
+
+</head>
+
+
+<body>
+
+<div class="container"  bgcolor="#E6E6FA">
+<div class="col-md-12">
+<div class="well">
+{% if user.is_authenticated %}
+
+<p class="bg-primary">Logged as <b>{{ user.username }}</b>. Session expires on {{ sessionexpiration }} (UTC)</p>
+
+{% endif %}
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+    <ul class="nav navbar-nav">
+        <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a href="/overview/measurement">MEASUREMENTS</a></li>
+        <li><a href="/overview/expedition">EXPEDITIONS</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/overview/quantity">Measured quantities</a></li>
+                <li><a href="/overview/sensortype">Types of sensors</a></li>
+                <li><a href="/overview/sensor">Sensors</a></li>
+                <li><a href="/overview/calibration">Calibration parameters</a></li>
+                <li><a href="/overview/visualization">Visualizations</a></li>
+            </ul>
+        </li>
+      {% if user.is_authenticated %}
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      {% else %}
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
+
+    </ul>
+</div>
+</nav>
+
+
+{% block mainframe %}
+<div class="panel panel-default">
+<div class="panel-body">
+    <h1>Welcome to EDNA!</h1>
+    <img src="{{ image }}" class="img-responsive">
+</div>
+</div>
+{% endblock %}
+
+</div>
+</div>
+</div>
+</body>
+
+
+

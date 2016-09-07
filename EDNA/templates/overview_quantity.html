@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+<div class="panel panel-default">
+<div class="panel-body">
+
+<form class="form-inline" role="form" method = "post">
+{% csrf_token %}
+<p>
+
+{% if 'edna.add_quantity' in perms %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SetQuantity">Add</button>
+{% endif %}
+
+{% if 'edna.delete_quantity' in perms %}
+<button type = "button" class="btn btn-danger" data-toggle = "modal" data-target = "#DeleteQuantity">Delete</button>
+{% endif %}
+
+{% include "modal_quantity.html" %}
+
+{% include "list_quantity.html" %}
+
+</form>
+</div>
+</div>
+{% endblock %}

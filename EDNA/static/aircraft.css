@@ -1,0 +1,12 @@
+body {
+padding: 10px;
+background-image: url("sun.jpg");
+background-repeat: no-repeat;
+background-size: 100%;
+background-attachment: scroll;
+}
+
+container-fluid {
+background-color: "#E6E6FA"
+}
+

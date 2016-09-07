@@ -1,0 +1,30 @@
+{% if calibrationslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %} 
+       <th>#</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for calibration in calibrationslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="calib_id" value="{{ calibration.pk }}" /> </td> {% endif %}
+          <td><a href="/detailview/calibration/{{ calibration.pk }}">{{calibration.pk}}</a></td>
+          <td><a href="/detailview/calibration/{{ calibration.pk }}">{{calibration.name}}</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if not calibrationslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No calibrations selected!
+</div>
+
+{% endif %}

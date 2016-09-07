@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Calibration Parameters</b></h4></div>
+<div class="panel-body">
+<table class="table-condensed">
+  <tr><td><b>Name:</b></td><td> {{ calibration.name }} </td></tr>
+  <tr><td><b>ID:</b></td><td> {{ calibration.pk}} </td></tr>
+  <tr><td><b>Type of sensor:</b></td><td><a href="/detailview/sensor/{{ calibration.sensor.pk }}"> {{ calibration.sensor }} </a> </td></tr>
+</table>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Values</b></h4></div>
+<div class="panel-body">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+        {% for key, value in param.items %} 
+         <tr><td>{{key}}</td><td>{{value}}</td></tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Measurements</b></h4></div>
+<div class="panel-body">
+{% include "list_measurement.html" %}
+</div>
+</div>
+
+{% endblock %}

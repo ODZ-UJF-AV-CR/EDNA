@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Measurement</b></h4></div>
+<div class="panel-body">
+<table class="table-condensed">
+  <tr><td><b>ID:</b></td><td> {{ measurement.pk}} </td></tr>
+  <tr><td><b>Sensor:</b></td><td> <a href="/detailview/sensor/{{measurement.sensor.pk}}">{{ measurement.sensor}} </a></td></tr>
+  <tr><td><b>Started:</b></td><td> {{ measurement.start|date:"Y-m-d H:i" }} </td><td> (UTC) </td></tr>
+  <tr><td><b>Ended:</b></td><td> {{ measurement.finish |date:"Y-m-d H:i"}} </td><td> (UTC) </td></tr>
+  <tr><td><b>Default Calibration:</b></td><td> <a href="/detailview/calibration/{{ measurement.default_calibration.pk }}">{{ measurement.default_calibration.name }}</a> </td></tr>
+</table>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Remarks</b></h4></div>
+<div class="panel-body">
+{{ measurement.remarks }}
+</div>
+</div>
+
+
+{% endblock %}

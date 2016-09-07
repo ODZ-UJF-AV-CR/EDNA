@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-body">
+
+<form class="form-inline" enctype="multipart/form-data" role="form" method = "post">
+{% csrf_token %}
+<p>
+
+{% if 'edna.add_visualization' in perms %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SetVisualization">Upload</button>
+{% endif %}
+
+{% if 'edna.delete_visualization' in perms %}
+<button type = "button" class="btn btn-danger" data-toggle = "modal" data-target = "#DeleteVisualization">Delete</button>
+{% endif %}
+
+{% include "modal_visualization.html" %}
+
+{% include "list_visualization.html" %}
+</form>
+</div>
+</div>
+
+{% endblock %}

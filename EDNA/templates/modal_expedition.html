@@ -1,0 +1,44 @@
+{% if 'edna.add_expedition' in perms %}
+<div id="SetExpedition" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Set expedition</h4>
+      </div>
+      <div class="modal-body">
+          <table>
+          {{ expedform.as_table }}
+          </table> 
+      </div>
+      <div class="modal-footer">
+        <input type = "submit" class="btn btn-primary" formaction = "/upload/expedition" value = "OK">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if 'edna.delete_expedition' in perms %}
+<div id="DeleteExpedition" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete expedition</h4>
+      </div>
+      <div class="modal-body"> 
+        Do you really want to delete selected expeditions?
+      </div>
+      <div class="modal-footer">
+        <input type = "submit" class="btn btn-danger" formaction = "/delete/expedition" value = "OK">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+

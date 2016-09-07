@@ -1,0 +1,41 @@
+{% if measurementslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %}
+        {% if search_form.show_id.value %} <th>#</th> {% endif %}
+        {% if search_form.show_start.value %} <th>Started (UTC)</th> {% endif %}
+        {% if search_form.show_finish.value %} <th>Finished (UTC)</th> {% endif %}
+        {% if search_form.show_sensor.value %} <th>Sensor</th> {% endif %}
+        {% if search_form.show_calibration.value %} <th>Calibration</th> {% endif %}
+        {% if search_form.show_timestep.value %} <th>Timestep</th> {% endif %}
+        {% if search_form.show_remarks.value %} <th>Remarks</th> {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for measurement in measurementslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="meas_id" value="{{ measurement.pk }}" /> </td> {% endif %}
+          {% if search_form.show_id.value %} <td><a href="/detailview/measurement/{{ measurement.pk }}">{{measurement.pk}}</a></td> {% endif %}
+          {% if search_form.show_start.value %} <td>{{measurement.start|date:"Y-m-d H:i"}}</td> {% endif %}
+          {% if search_form.show_finish.value %} <td>{{measurement.finish|date:"Y-m-d H:i"}}</td> {% endif %}  
+          {% if search_form.show_sensor.value %} <td><a href="/detailview/sensor/{{ measurement.sensor.pk }}"> {{measurement.sensor.name}} </a></td> {% endif %}
+          {% if search_form.show_calibration.value %} <td><a href="/detailview/calibration/{{ measurement.default_calibration.pk }}"> {{measurement.default_calibration}} </a></td> {% endif %}
+          {% if search_form.show_timestep.value %} <td> {{measurement.timestep}} </td> {% endif %}
+          {% if search_form.show_remarks.value %} <td>{{measurement}}</td>  {% endif %} 
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if not measurementslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No measurements selected!
+</div>
+
+{% endif %}
+
+

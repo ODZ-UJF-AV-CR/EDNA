@@ -1,0 +1,33 @@
+{% if visualizationslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %}
+        <th>#</th>
+        <th>Full name</th>
+        <th>Quantities</th>  
+      </tr>
+    </thead>
+    <tbody>
+      {% for visualization in visualizationslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="vis_id" value="{{ visualization.pk }}" /> </td> {% endif %}
+          <td><a href="/detailview/visualization/{{ visualization.pk }}"> {{visualization.pk}} </a> </td>
+          <td><a href="/detailview/visualization/{{ visualization.pk }}"> {{visualization.name}} </a> </td>
+          <td> {% for q in  visualization.quantities.all %} <a href="/detailview/quantity/{{ q.pk }}"> {{ q }} </a> {% endfor %} </td> 
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if not visualizationslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No visualizations selected!
+</div>
+
+{% endif %}
+
+

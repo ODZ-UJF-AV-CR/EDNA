@@ -1,0 +1,32 @@
+{% if sensorslist %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %}
+        {% if sensor_columns.show_pk %}<th>#</th>{% endif %}
+        {% if sensor_columns.show_name %}<th>Name</th>{% endif %}
+        {% if sensor_columns.show_sensortype %}<th>Type</th>{% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for sensor in sensorslist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="sens_id" value="{{ sensor.pk }}" /> </td> {% endif %}
+          {% if sensor_columns.show_pk %}<td><a href="/detailview/sensor/{{ sensor.pk }}">{{sensor.pk}}</a></td> {% endif %}
+          {% if sensor_columns.show_name %} <td><a href="/detailview/sensor/{{ sensor.pk }}">{{sensor.name}}</a></td> {% endif %}
+          {% if sensor_columns.show_sensortype %} <td><a href="/detailview/sensortype/{{ sensor.sensor_type.pk }}">{{sensor.sensor_type}}</a></td> {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if not sensorslist %}
+
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  No sensors selected!
+</div>
+
+{% endif %}

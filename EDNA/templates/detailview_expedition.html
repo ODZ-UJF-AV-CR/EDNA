@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Expedition</b></h4></div>
+<div class="panel-body">
+<table class="table-condensed">
+  <tr><td><b>Name:</b></td><td> {{ expedition.name }} </td></tr>
+  <tr><td><b>ID:</b></td><td> {{ expedition.pk}} </td></tr>
+  <tr><td><b>Started:</b></td><td> {{ expedition.start|date:"Y-m-d H:i" }} </td><td> (UTC) </td></tr>
+  <tr><td><b>Ended:</b></td><td> {{ expedition.finish |date:"Y-m-d H:i"}} </td><td> (UTC) </td></tr>
+</table>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><h4><b>Remarks</b></h4></div>
+<div class="panel-body">
+{{ expedition.remarks }}
+</div>
+</div>
+
+<form class="form-inline" role="form" enctype="multipart/form-data"  method = "post">
+{% csrf_token %}
+<div class="panel panel-default">
+<div class="panel-heading">
+  <div class="panel-title pull-left">
+    <h4><b>Measurements</b></h4>
+  </div>
+  <div class="panel-title pull-right">
+    <input type = "submit" class="btn btn-primary" formaction = "/visualize" value = "Visualize">
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="panel-body">
+{% include "list_measurement.html" %}
+</div>
+</div>
+</form>
+{% endblock %}

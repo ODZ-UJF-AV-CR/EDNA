@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        {% if checkboxes %} <th></th> {% endif %}
+        <th>Name</th>
+        <th>Quantities</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sensortype in sensortypelist %}
+        <tr> 
+          {% if checkboxes %} <td> <input type="checkbox" name="st_id" value="{{ sensortype.pk }}" /> </td> {% endif %}
+          <td><a href="/detailview/sensortype/{{ sensortype.pk }}"> {{ sensortype.name }} </a> </td> 
+          <td> {% for q in  sensortype.quantities.all %} <a href="/detailview/quantity/{{ q.pk }}"> {{ q }} </a> {% endfor %} </td> 
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

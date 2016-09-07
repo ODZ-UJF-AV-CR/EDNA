@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+
+{% block mainframe %}
+
+<div class="panel panel-default">
+<div class="panel-body">
+{% include "search_measurement.html" %}
+
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-body">
+<form class="form-inline" role="form" enctype="multipart/form-data"  method = "post">
+{% csrf_token %}
+<p>
+<input type = "submit" class="btn btn-primary" formaction = "/download/measurement" value = "Download">
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Visualize">Visualize</button>
+
+{% if 'edna.add_measurement' in perms %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SetMeasurement">Upload</button>
+{% endif %}
+
+{% if 'edna.add_expedition' in perms %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SetExpedition">Create Expedition</button>
+{% endif %}
+
+{% if 'edna.delete_measurment' in perms %}
+<button type = "button" class="btn btn-danger" data-toggle = "modal" data-target = "#DeleteMeasurement">Delete</button>
+{% endif %}
+</p>
+
+{% include "modal_expedition.html" %}
+{% include "modal_measurement.html" %}
+{% include "modal_visualize.html" %}
+{% include "list_measurement.html" %}
+</form>
+</div>
+</div>
+
+{% endblock %}
