@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^login',views.login),
     url(r'^logout',views.logout),
     url(r'^visualize',views.visualize),
+#    url(r'^jupyter',views.jupyter),
 
     url(r'^download/measurement',views.download_measurement),
     url(r'^upload/sensortype',uploadviews.sensortype),

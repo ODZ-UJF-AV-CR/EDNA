@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 def load_script(source, expected_name):
     return_value = None
-    script_name = source.name
+    script_name = source.path
     mod_name,file_ext = os.path.splitext(os.path.split(script_name)[-1])
     if file_ext.lower() == '.py':
         py_mod = imp.load_source(mod_name, script_name)
@@ -24,7 +24,7 @@ def load_script(source, expected_name):
 
 def load_parameters(source):
     return_value = {}
-    f = open(source.name,'r')
+    f = open(source.path,'r')
     for line in f:
          newline = line.replace(' ','')
          (key, val) = newline.split('=')
@@ -35,6 +35,6 @@ def load_parameters(source):
 def create_image():
     output = models.TemporalImage()
     output.new_name()
-    plt.savefig(output.image.name)
+    plt.savefig(output.image.path)
     output.test_old()
     return output

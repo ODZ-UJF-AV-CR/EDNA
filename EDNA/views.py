@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 import django.contrib.auth as auth
+from os.path import basename
 
+from django.db.models import Q
 
 from .models import SensorType #just for test
 from .models import CalibrationParameters #just for test
@@ -21,6 +23,7 @@ import models as md
 import forms as fm
 import file_handle
 import preprocessor
+import ODZ.settings
 
 from django.forms import formset_factory
 from django.http import HttpResponseRedirect,HttpResponse
@@ -29,6 +32,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 def global_context(request):
     request.session.set_expiry(3600)
     sessionexpiration = request.session. get_expiry_date()
+    plt.close()
     return {'sessionexpiration':sessionexpiration}
 
    
@@ -38,7 +42,7 @@ def global_context(request):
 
 def edna_home(request):
     context = global_context(request)
-    sample = md.Visualization.objects.get(pk=2)
+    sample = md.Visualization.objects.order_by('?').first()
     draw = sample.load_drawing_script()
     preproc = md.PreprocessedData.objects.all().filter(visualization=sample)
     data = pd.DataFrame()
@@ -49,6 +53,10 @@ def edna_home(request):
     context.update({'image':image.ref_url})
 
     return render(request,'index.html',context)
+
+def jupyter(request):
+    context = global_context(request)
+    return render(request,'jupyter.html',context)
 
 def login(request):
     context = global_context(request)
@@ -73,16 +81,16 @@ def logout(request):
 
 def download_measurement(request):
     context = global_context(request)
-    filename = 'measurements.zip'
+    filename = os.path.join(ODZ.settings.BASE_DIR,'EDNA/static/tmp/measurements.zip')
     meas_ids = request.POST.getlist('meas_id')
     myzip = zipfile.ZipFile(filename,'w')
     for i in meas_ids:
         meas = md.Measurement.objects.get(id=int(i))
-        myzip.write(meas.record.name)
+        myzip.write(meas.record.path, basename(meas.record.name))
     myzip.close()
     fsock = open(filename,"rb")
     response = HttpResponse(fsock, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename=measurements.zip'
+    response['Content-Disposition'] = 'attachment; filename=/static/tmp/measurements.zip'
     fsock.close()
     os.remove(filename)
     return response
@@ -97,10 +105,14 @@ def visualize(request):
         meas = md.Measurement.objects.get(id=int(i))
         measures.append(meas)
     preprocessor.check_visualization(measures,visual)
+
+
     active = md.PreprocessedData.objects.all()    
     active = active.filter(visualization__pk = visual.pk)
+
     for j in measures:
         active = active.filter(measurements__pk = j.pk)
+
     data = pd.DataFrame()
     draw = visual.load_drawing_script()
     for preproc in active:

@@ -8,7 +8,7 @@
 <table class="table-condensed">
   <tr><td><b>Name:</b></td><td> {{ expedition.name }} </td></tr>
   <tr><td><b>ID:</b></td><td> {{ expedition.pk}} </td></tr>
-  <tr><td><b>Started:</b></td><td> {{ expedition.start|date:"Y-m-d H:i" }} </td><td> (UTC) </td></tr>
+  <tr><td><b>Started:</b></td><td> {{ expedition.start|date:"Y-m-d H:i" }} </td><td> (UTC]) </td></tr>
   <tr><td><b>Ended:</b></td><td> {{ expedition.finish |date:"Y-m-d H:i"}} </td><td> (UTC) </td></tr>
 </table>
 </div>
@@ -29,7 +29,7 @@
     <h4><b>Measurements</b></h4>
   </div>
   <div class="panel-title pull-right">
-    <input type = "submit" class="btn btn-primary" formaction = "/visualize" value = "Visualize">
+<!--    <input type = "submit" class="btn btn-primary" formaction = "/visualize" value = "Visualize"> --!>
   </div>
   <div class="clearfix"></div>
 </div>

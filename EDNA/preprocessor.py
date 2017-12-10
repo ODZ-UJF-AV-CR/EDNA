@@ -35,5 +35,4 @@ def check_visualization(measures, visual):
                 member = md.Measurement.objects.get(pk=j[1])
                 new_preproc.measurements.add(member)
             new_preproc.calculate()
-            new_preproc.save()
-
+	    new_preproc.save()

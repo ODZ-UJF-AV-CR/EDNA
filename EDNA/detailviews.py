@@ -43,7 +43,7 @@ def sensortype(request, db_id):
     context = global_context(request)
 
     sensortype = md.SensorType.objects.get(pk=db_id)
-    with open(sensortype.sensor_scripts.name) as inp:
+    with open(sensortype.sensor_scripts.path) as inp:
         script = inp.read()
     context.update({'sensortype':sensortype,'script':script})
 
@@ -88,7 +88,7 @@ def visualization(request, db_id):
     context = global_context(request)
     visualization = md.Visualization.objects.get(pk=db_id)
     context.update({'visualization':visualization})
-    with open(visualization.visualization_scripts.name) as inp:
+    with open(visualization.visualization_scripts.path) as inp:
         script = inp.read()
     context.update({'script':script})    
 

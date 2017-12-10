@@ -5,7 +5,7 @@
 
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h3><b>{{ sensor.name }}</b></h3></div>
+  <div class="panel-heading"><h3><center><b>{{ sensor.name }}</b></center></h3></div>
   <div class="panel-body">
   <table class="table-condensed">
     <tr><td><b>Type:</b></td><td> <a href="/detailview/sensortype/{{ sensor.sensor_type.pk }}"> {{ sensor.sensor_type }} </a></td></tr>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="panel panel-default">
-<div class="panel-heading"><h3><b>Available calibrations</b></h3></div>
+<div class="panel-heading"><h4><center><b>Available Calibrations</b></center></h4></div>
 <div class="panel-body">
 {% include "list_calibration.html" %}
 </div>
@@ -23,7 +23,7 @@
 
 
 <div class="panel panel-default">
-<div class="panel-heading"><h3><b>Measurements</b></h3></div>
+<div class="panel-heading"><h4><center><b>Measurements</b></center></h4></div>
 <div class="panel-body">
 {% include "list_measurement.html" %}
 </div>

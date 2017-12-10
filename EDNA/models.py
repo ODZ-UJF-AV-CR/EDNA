@@ -7,6 +7,9 @@ import imp
 import pandas
 import file_handle
 import datetime
+from django.db.models.signals import pre_delete
+from django.dispatch.dispatcher import receiver
+
 
 # Create your models here.
 
@@ -76,6 +79,12 @@ class Measurement(models.Model):
         script(self)
         self.save()
 
+@receiver(pre_delete, sender=Measurement)
+def pre_delete_measurement(sender, instance, **kwargs):
+    preprocs = instance.preprocesseddata_set.all()
+    for preproc in preprocs:
+        preproc.delete()
+
 class Expedition(models.Model):
     name = models.CharField(max_length=255)
     measurements = models.ManyToManyField(Measurement)
@@ -120,15 +129,20 @@ class PreprocessedData(models.Model):
         self.record.save(desired_name,ContentFile(""))
         script = self.visualization.load_preprocessing_script()
         processed_value = script(self)
-        outpfile = open(self.record.name,'w')
+        outpfile = open(self.record.path,'w')
         processed_value.to_csv(outpfile)
         outpfile.close()
 
     def load(self):
-        inpfile = open (self.record.name)
+        inpfile = open (self.record.path)
         return_value = pandas.read_csv(inpfile)
         inpfile.close()
         return return_value
+
+@receiver(pre_delete, sender=PreprocessedData)
+def preprocessed_data_delete(sender, instance, **kwargs):
+    instance.record.delete(False)
+
 
 class TemporalImage(models.Model):
     image = models.ImageField()

@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3+-@@uwj17r$p)dwpn45a-y()g5gb&adej%6v)21#iu4ojffl0'
+SECRET_KEY = 'weionvtj43oiaa49bvt925byitb0merkgosmbkgrejnolnj656651351'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY aaWARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['edna.ujf.cas.cz']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -79,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'edna',
-        'USER': 'peksa',
-        'PASSWORD':'kominik115',
+        'USER': 'ednakhustokrutoprisny',
+        'PASSWORD':'1452653pavianu+',
         'HOST':'127.0.0.1',
         'PORT':'5432',
     }
@@ -126,3 +127,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+MEDIA_ROOT = '/var/www/EDNA/'
+ 

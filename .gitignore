@@ -1,0 +1,8 @@
+measurements/
+preprocessed/
+sensor_scripts/
+visualization_scripts/
+calibration_parameters/
+EDNA/static/tmp/
+migrations
+*.pyc
