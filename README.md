@@ -25,3 +25,9 @@ The database is accessible for download and visualization to non-registred users
 The current version is deployed to www.edna.ujf.cas.cz
 
 Technologies involved: Python, Django, Bootstrap, Pandas, NumPy
+
+
+## Related documents
+
+  * [European Dosimetry Network aboard Aircraft (EDNA) slides](https://docs.google.com/presentation/d/1MtXrfd3f4mMmrlZ84HuAUgjUKm84PMN8U536UpBLaLY/edit?usp=sharing)
+
