@@ -1,4 +1,4 @@
-# EDNA
+# EDNA - European Dosimetry Network aboard Aircraft
 
 Software basement for the network of radiation measurements using various types of dosemeters, ready for inter-comparison especially for the case of extreme solar event or atmospheric discharge event.
 
